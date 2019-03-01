@@ -56,9 +56,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public APiStatus<User> login(User user) {
 		// TODO Auto-generated method stub
+		User user2=userRepo.findByEmail(user.getEmail());
+		if(user2!=null) {
+			User user3=userRepo.findByPassword(user.getPassword());
+			return (user3!=null) ?
+					 new APiStatus<>(ResponseMessage.SUCCESS,ResponseMessage.LOGIN_SUCCESS,user):
+					 new APiStatus<>(ResponseMessage.FAILED,ResponseMessage.USER_EXIST,null);
+		}else {
+			return new APiStatus<>(ResponseMessage.FAILED,ResponseMessage.EMAIL_EXIST,null);
+		}
 		
-		return null;
-	}
+			}
+	
 
 	@Override
 	public APiStatus<User> deleteUser(int id) {
@@ -75,17 +84,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public APiStatus<User> updateUser(User user) {
 		// TODO Auto-generated method stub
-		if(userRepo.findById(user.getId()!=null)) {
+		
 			User user1 = userRepo.save(user);
 			return new APiStatus<>(ResponseMessage.SUCCESS,ResponseMessage.UPDATE_SUCCESS,user);
-		}else
-		return new APiStatus<>(ResponseMessage.SUCCESS,ResponseMessage.USER_EXIST,null);
-	}
+}
 
 	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
-		return userRepo.findAll();
+		return userRepo.findAll();//hello
 	}
 
 }

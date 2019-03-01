@@ -9,9 +9,8 @@ import com.test.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findByEmail (String email);
-	
+	public User findByPassword (String password);
 	public User findById(int id);
 
-    
 	public boolean findById(boolean b);
 }

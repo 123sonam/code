@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ import com.test.utill.ResponseMessage;
 public class UserController<T> {
 
 	@Autowired
-	private UserService service;
+	private UserService service; //hgfghfghfhf
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestBody User user){
@@ -78,7 +79,7 @@ public class UserController<T> {
 					ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(status);
 	}
 	
-	@PostMapping("/updateuser/id")
+	@PutMapping("/updateuser/id")
 	public ResponseEntity<?> updateUser(@RequestBody User user) {
 		APiStatus<User> status = service.updateUser(user);
 		return (status.getStatus().equals(ResponseMessage.SUCCESS))? 
