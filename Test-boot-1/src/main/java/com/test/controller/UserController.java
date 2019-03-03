@@ -23,7 +23,7 @@ import com.test.utill.ResponseMessage;
 public class UserController<T> {
 
 	@Autowired
-	private UserService service; //hgfghfghfhf
+	private UserService service;
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestBody User user){
